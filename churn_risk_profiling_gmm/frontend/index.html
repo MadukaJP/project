@@ -356,6 +356,37 @@
                   >
                 </div>
               </div>
+              <div class="md:col-span-2">
+                <p class="text-label-caps font-label-caps text-on-surface-variant px-1 mb-2">
+                  Example Profiles
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-sm">
+                  <button
+                    class="example-profile-btn bg-white/40 border border-outline-variant rounded-lg py-2 px-3 text-sm font-medium text-on-surface hover:bg-white/60 transition-colors flex items-center justify-center gap-2"
+                    type="button"
+                    data-profile="power"
+                  >
+                    <span class="material-symbols-outlined text-base text-on-secondary-container">bolt</span>
+                    <span>Power User</span>
+                  </button>
+                  <button
+                    class="example-profile-btn bg-white/40 border border-outline-variant rounded-lg py-2 px-3 text-sm font-medium text-on-surface hover:bg-white/60 transition-colors flex items-center justify-center gap-2"
+                    type="button"
+                    data-profile="standard"
+                  >
+                    <span class="material-symbols-outlined text-base text-tertiary-fixed-dim">person</span>
+                    <span>Standard User</span>
+                  </button>
+                  <button
+                    class="example-profile-btn bg-white/40 border border-outline-variant rounded-lg py-2 px-3 text-sm font-medium text-on-surface hover:bg-white/60 transition-colors flex items-center justify-center gap-2"
+                    type="button"
+                    data-profile="at_risk"
+                  >
+                    <span class="material-symbols-outlined text-base text-error">warning</span>
+                    <span>At-Risk / Churning</span>
+                  </button>
+                </div>
+              </div>
               <div class="md:col-span-2 pt-md">
                 <button
                   id="submit-btn"
@@ -494,6 +525,7 @@
       const legendEl = document.getElementById("probability-legend");
       const chartCanvas = document.getElementById("risk-profile-chart");
       const toastContainer = document.getElementById("toast-container");
+      const exampleProfileButtons = document.querySelectorAll(".example-profile-btn");
 
       const segmentColors = {
         "Power User": "#00714d",
@@ -504,6 +536,29 @@
         "Power User": 0,
         "Standard User": 0,
         "At-Risk/Churning User": 0,
+      };
+      const exampleProfiles = {
+        power: {
+          avg_weekly_usage_hours: 18.5,
+          support_tickets: 1,
+          payment_failures: 0,
+          tenure_months: 36,
+          last_login_days_ago: 2,
+        },
+        standard: {
+          avg_weekly_usage_hours: 9.0,
+          support_tickets: 4,
+          payment_failures: 1,
+          tenure_months: 18,
+          last_login_days_ago: 14,
+        },
+        at_risk: {
+          avg_weekly_usage_hours: 2.5,
+          support_tickets: 8,
+          payment_failures: 4,
+          tenure_months: 5,
+          last_login_days_ago: 42,
+        },
       };
 
       let riskChart;
@@ -605,6 +660,26 @@
           },
         });
       }
+
+      function applyExampleProfile(profileKey) {
+        const profile = exampleProfiles[profileKey];
+        if (!profile) {
+          return;
+        }
+
+        Object.entries(profile).forEach(([fieldId, value]) => {
+          const field = document.getElementById(fieldId);
+          if (field) {
+            field.value = value;
+          }
+        });
+      }
+
+      exampleProfileButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          applyExampleProfile(button.dataset.profile);
+        });
+      });
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
