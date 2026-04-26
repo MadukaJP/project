@@ -219,7 +219,7 @@
         <div class="flex items-center gap-8">
           <span
             class="text-xl font-extrabold tracking-tight text-blue-600 font-manrope antialiased"
-            >CSM Pulse</span
+            >CRP Pulse</span
           >
           <div class="relative hidden md:block">
             <span
@@ -704,7 +704,7 @@
         showToast("Submitting profile request...", "info");
 
         try {
-          const res = await fetch("http://localhost:8000/api/user_profile", {
+          const res = await fetch("https://churn-risk-profiling.fastapicloud.dev/api/user_profile", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
