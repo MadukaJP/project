@@ -12,7 +12,7 @@ metadata = joblib.load("metadata.pkl")
 FEATURES  = metadata["features"]   # list of feature names in the correct order
 LABEL_MAP = metadata["label_map"]  # {component_index: "Segment Name"}
 
-app = FastAPI(title="User Segmentation API", version="1.0.0")
+app = FastAPI(title="Churn Risk Profiling API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
