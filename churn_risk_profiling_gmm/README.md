@@ -27,7 +27,7 @@ The system uses a trained **Gaussian Mixture Model (GMM)** backend and a static 
 
 - **Frontend (Netlify):** [https://churn-risk-profiling.netlify.app](https://churn-risk-profiling.netlify.app)
 - **Backend API:** [https://churn-risk-profiling.fastapicloud.dev](https://churn-risk-profiling.fastapicloud.dev)
-- **API Docs:** [https://churn-risk-profiling.fastapicloud.dev/docs](https://churn-risk-profiling.fastapicloud.dev/dpcs)
+- **API Docs:** [https://churn-risk-profiling.fastapicloud.dev/docs](https://churn-risk-profiling.fastapicloud.dev/docs)
 - **Dataset (Kaggle):** [Customer Subscription Churn and Usage Patterns](https://www.kaggle.com/datasets/jayjoshi37/customer-subscription-churn-and-usage-patterns/data)
 
 ## Project Structure
